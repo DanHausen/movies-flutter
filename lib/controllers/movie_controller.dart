@@ -11,6 +11,15 @@ class MovieController {
   MovieResponseModel movieResponseModel;
   MovieError movieError;
   bool loading = true;
+  int gridSize = 2;
+
+  changeGridSize() {
+    if (gridSize == 2) {
+      gridSize = 3;
+    } else {
+      gridSize = 2;
+    }
+  }
 
   List<MovieModel> get movies => movieResponseModel?.movies ?? <MovieModel>[];
   int get moviesCount => movies.length;

@@ -36,6 +36,12 @@ class _MoviePageState extends State<MoviePage> {
     });
   }
 
+  _changeGrid() {
+    setState(() {
+      _controller.changeGridSize();
+    });
+  }
+
   _initialize() async {
     setState(() {
       _controller.loading = true;
@@ -64,6 +70,10 @@ class _MoviePageState extends State<MoviePage> {
           icon: Icon(Icons.refresh),
           onPressed: _initialize,
         ),
+        IconButton(
+          icon: Icon(Icons.grid_view),
+          onPressed: _changeGrid,
+        )
       ],
     );
   }
@@ -82,7 +92,7 @@ class _MoviePageState extends State<MoviePage> {
       padding: const EdgeInsets.all(2.0),
       itemCount: _controller.moviesCount,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+        crossAxisCount: _controller.gridSize,
         mainAxisSpacing: 2,
         crossAxisSpacing: 2,
         childAspectRatio: 0.65,
